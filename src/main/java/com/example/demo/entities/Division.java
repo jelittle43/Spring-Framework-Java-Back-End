@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name="Division")
+@Table(name="divisions")
 @Getter
 @Setter
 public class Division {

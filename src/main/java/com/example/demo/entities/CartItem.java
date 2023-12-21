@@ -11,7 +11,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name="CartItem")
+@Table(name="cart_items")
 @Getter
 @Setter
 
