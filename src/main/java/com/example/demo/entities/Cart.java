@@ -1,6 +1,5 @@
 package com.example.demo.entities;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,6 +15,12 @@ import java.util.Set;
 @Setter
 
 public class Cart {
+
+    public void add(CartItem item) {
+    }
+
+    public void getCartItems(Set<CartItem> cartItems) {
+    }
 
     public enum StatusType{
         pending,
