@@ -61,4 +61,30 @@ public class Customer {
             cart.setCustomer(this);
         }
     }
+
+    public Customer(){
+        firstName = "null";
+        lastName = "null";
+        address = "null";
+        postal_code = "null";
+        phone  = "null";
+        Division division = new Division();
+        division.setId(17L);
+        this.division = division;
+    }
+
+    public Customer(String firstName, String lastName, String address, String postal_code, String phone, Long division_id){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.postal_code = postal_code;
+        this.phone = phone;
+        this.division = setDivision(division_id);
+    }
+     public Division setDivision(Long id) {
+        Division division = new Division();
+        division.setId(id);
+        return division;
+     }
+
 }
