@@ -41,7 +41,7 @@ public class Excursion {
     @JoinColumn(name= "vacation_id")
     private Vacation vacation;
 
-    @ManyToMany (mappedBy = "excursion")
-    Set<CartItem> cartitems = new HashSet<>();
+    @ManyToMany(mappedBy = "excursions")
+    Set<CartItem> cartItems = new HashSet<>();
 
 }
