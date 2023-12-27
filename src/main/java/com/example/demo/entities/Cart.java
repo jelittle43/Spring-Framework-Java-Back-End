@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,17 +17,6 @@ import java.util.Set;
 
 public class Cart {
 
-    public void add(CartItem item) {
-    }
-
-    public void getCartItems(Set<CartItem> cartItems) {
-    }
-
-    public enum StatusType{
-        pending,
-        ordered,
-        canceled
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,21 +34,31 @@ public class Cart {
 
     @Enumerated(EnumType.STRING)
     @Column(name="status")
-    private StatusType status;
+    private StatusType.CartStatus status = StatusType.CartStatus.pending;
 
-    @Column(name= "create_date")
     @CreationTimestamp
+    @Column(name= "create_date")
     private Date create_date;
 
-    @Column(name= "last_update")
     @UpdateTimestamp
+    @Column(name= "last_update")
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name= "customer_id", nullable = false)
+    @JoinColumn(name= "customer_id")
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItems = new HashSet<>();
+
+    public void add(CartItem item) {
+        if (item !=null){
+            if (cartItems ==null){
+                cartItems = new HashSet<>();
+            }
+            cartItems.add(item);
+            item.setCart(this);
+        }
+    }
 
 }

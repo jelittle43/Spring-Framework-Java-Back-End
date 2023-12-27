@@ -1,6 +1,5 @@
 package com.example.demo.entities;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -38,16 +38,10 @@ public class Excursion {
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name= "vacation_id", nullable = false)
+    @JoinColumn(name= "vacation_id")
     private Vacation vacation;
 
-    @ManyToMany
-    @JoinTable(
-            name="excursion_cartitem",
-            joinColumns = @JoinColumn(name = "excusrion_id"),
-            inverseJoinColumns = @JoinColumn(name = "cart_item_id")
-    )
-    private Set<CartItem> cartitems;
-
+    @ManyToMany (mappedBy = "excursion")
+    Set<CartItem> cartitems = new HashSet<>();
 
 }

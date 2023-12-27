@@ -22,14 +22,19 @@ public class CartItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name= "vacation_id", nullable = false)
+    @JoinColumn(name= "vacation_id")
     private Vacation vacation;
 
-    @ManyToMany(mappedBy = "cartitems")
-    private Set<Excursion> excursions;
+    @ManyToMany
+    @JoinTable(
+            name = "excursion_cartitem",
+            joinColumns = @JoinColumn(name = "cart_item_id"),
+            inverseJoinColumns = @JoinColumn(name = "excursion_id")
+    )
+    Set<Excursion> excursion;
 
     @ManyToOne
-    @JoinColumn(name= "cart_id", nullable = false)
+    @JoinColumn(name= "cart_id")
     private Cart cart;
 
     @Column(name= "create_date")
@@ -39,5 +44,8 @@ public class CartItem {
     @Column(name= "last_update")
     @UpdateTimestamp
     private Date last_update;
+
+
+
 
 }

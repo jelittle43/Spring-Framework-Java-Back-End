@@ -14,10 +14,6 @@ public class Purchase {
 
     private Customer customer;
     private Cart cart;
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItems;
 
-
-    public Set<CartItem> getCartItems() {
-        return cartItem;
-    }
 }
