@@ -32,6 +32,10 @@ public class CheckoutServiceImpl implements CheckoutService{
         cart.setOrderTrackingNumber(orderTrackingNumber);
 
         Set<CartItem> cartItems = purchase.getCartItems();
+        if (cartItems.isEmpty()) {
+            return new PurchaseResponse("Error: Cart Empty");
+        }
+
         cartItems.forEach(item -> cart.add(item));
 
         cart.setStatus(Cart.StatusType.ordered);
@@ -42,6 +46,7 @@ public class CheckoutServiceImpl implements CheckoutService{
 
         return new PurchaseResponse(orderTrackingNumber);
     }
+
 
     private String generateOrderTrackingNumber() {
 
