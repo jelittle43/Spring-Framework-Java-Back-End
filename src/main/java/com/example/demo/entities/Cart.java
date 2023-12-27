@@ -17,6 +17,11 @@ import java.util.Set;
 
 public class Cart {
 
+    public enum StatusType{
+
+        pending, ordered, canceled
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +39,7 @@ public class Cart {
 
     @Enumerated(EnumType.STRING)
     @Column(name="status")
-    private StatusType.CartStatus status = StatusType.CartStatus.pending;
+    private StatusType status = StatusType.pending;
 
     @CreationTimestamp
     @Column(name= "create_date")
